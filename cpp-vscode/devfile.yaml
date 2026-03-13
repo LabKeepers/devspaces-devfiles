@@ -1,0 +1,107 @@
+schemaVersion: 2.2.0
+metadata:
+  name: cpp-development
+  displayName: C++ Development
+  description: C++ development environment with GCC, CMake, and VSCode extensions
+  tags:
+    - C++
+    - GCC
+    - CMake
+    - Make
+    - Automake
+    - Autocnf
+attributes:
+  controller.devfile.io/storage-type: per-user
+
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:latest
+      memoryLimit: 4Gi
+      memoryRequest: 512Mi
+      cpuLimit: "2"
+      cpuRequest: "500m"
+      mountSources: true
+      env:
+        - name: LANG
+          value: en_US.UTF-8
+      command:
+        - /bin/bash
+      args:
+        - -c
+        - |
+          sudo dnf install -y \
+            gcc gcc-c++ \
+            gdb \
+            cmake \
+            ninja-build \
+            clang \
+            clang-tools-extra \
+            valgrind \
+            cppcheck \
+            doxygen \
+            boost-devel \
+            gtest-devel \
+            make \
+            automake \
+            m4 \
+            autoconf \
+            libtool \
+            pkg-config \
+            git \
+          && tail -f /dev/null
+
+  - name: vscode-cpp
+    plugin:
+      components:
+        - name: vscode-language-pack
+          container:
+            image: quay.io/devfile/universal-developer-image:latest
+      extensions:
+        - ms-vscode.cpptools
+        - ms-vscode.cpptools-extension-pack
+        - ms-vscode.cmake-tools
+        - twxs.cmake
+        - llvm-vs-code-extensions.vscode-clangd
+        - ms-vscode.makefile-tools
+        - vadimcn.vscode-lldb
+        - cschlosser.doxdocgen
+        - matepek.vscode-catch2-test-adapter
+        - streetsidesoftware.code-spell-checker
+
+commands:
+  - id: build-cmake
+    exec:
+      label: "CMake Build"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: |
+        mkdir -p build && cd build && cmake .. -GNinja && ninja
+      group:
+        kind: build
+        isDefault: true
+
+  - id: build-make
+    exec:
+      label: "Make Build"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: make -j$(nproc)
+      group:
+        kind: build
+
+  - id: run-tests
+    exec:
+      label: "Run Tests"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}/build
+      commandLine: ctest --output-on-failure
+      group:
+        kind: test
+
+  - id: clean
+    exec:
+      label: "Clean Build"
+      component: tools
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: rm -rf build
