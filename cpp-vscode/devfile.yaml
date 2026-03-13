@@ -34,33 +34,20 @@ components:
       env:
         - name: LANG
           value: en_US.UTF-8
-      command:
-        - /bin/bash
-      args:
-        - -c
-        - |
-          sudo dnf install -y \
-            gcc gcc-c++ \
-            gdb \
-            cmake \
-            ninja-build \
-            clang \
-            clang-tools-extra \
-            valgrind \
-            cppcheck \
-            doxygen \
-            boost-devel \
-            gtest-devel \
-            make \
-            automake \
-            m4 \
-            autoconf \
-            libtool \
-            pkg-config \
-            git \
-          && tail -f /dev/null
+events:
+  postStart:
+    - install-tools
 
 commands:
+  - id: install-tools
+    exec:
+      label: "Install C++ tools"
+      component: tools
+      commandLine: |
+        sudo dnf install -y gcc gcc-c++ gdb cmake ninja-build clang \
+        clang-tools-extra valgrind cppcheck doxygen boost-devel \
+        gtest-devel make pkg-config autoconf automake libtool m4
+
   - id: build-cmake
     exec:
       label: "CMake Build"
