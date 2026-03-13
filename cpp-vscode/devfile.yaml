@@ -12,6 +12,15 @@ metadata:
     - Autocnf
 attributes:
   controller.devfile.io/storage-type: per-user
+  che.eclipse.org/extra-extensions: >-
+    ms-vscode.cpptools,
+    ms-vscode.cmake-tools,
+    twxs.cmake,
+    llvm-vs-code-extensions.vscode-clangd,
+    ms-vscode.makefile-tools,
+    vadimcn.vscode-lldb,
+    cschlosser.doxdocgen,
+    streetsidesoftware.code-spell-checker
 
 components:
   - name: tools
@@ -50,24 +59,6 @@ components:
             pkg-config \
             git \
           && tail -f /dev/null
-
-  - name: vscode-cpp
-    plugin:
-      components:
-        - name: vscode-language-pack
-          container:
-            image: quay.io/devfile/universal-developer-image:latest
-      extensions:
-        - ms-vscode.cpptools
-        - ms-vscode.cpptools-extension-pack
-        - ms-vscode.cmake-tools
-        - twxs.cmake
-        - llvm-vs-code-extensions.vscode-clangd
-        - ms-vscode.makefile-tools
-        - vadimcn.vscode-lldb
-        - cschlosser.doxdocgen
-        - matepek.vscode-catch2-test-adapter
-        - streetsidesoftware.code-spell-checker
 
 commands:
   - id: build-cmake
