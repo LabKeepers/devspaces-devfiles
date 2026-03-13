@@ -35,6 +35,7 @@ components:
         - name: LANG
           value: en_US.UTF-8
 
+commands:
   - id: build-cmake
     exec:
       label: "CMake Build"
