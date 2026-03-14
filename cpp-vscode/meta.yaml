@@ -1,0 +1,8 @@
+displayName: C++ Development (VSCode)
+description: C++ with GCC, CMake, Autotools and VSCode
+tags:
+  - C++
+  - GCC
+  - CMake
+icon: https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/240px-Visual_Studio_Code_1.35_icon.svg.png
+globalMemoryLimit: 4Gi
