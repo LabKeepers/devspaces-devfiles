@@ -1,0 +1,39 @@
+schemaVersion: 2.2.0
+metadata:
+  name: cpp-development
+  displayName: C++ Development
+  description: C++ development environment with GCC, CMake, and VSCode extensions
+  tags:
+    - C++
+    - GCC
+    - CMake
+    - Make
+    - Automake
+    - Autocnf
+attributes:
+  controller.devfile.io/storage-type: per-user
+  che.eclipse.org/extra-extensions: >-
+    ms-vscode.cpptools-extension-pack,
+    ms-vscode.cpptools-themes,
+    ms-vscode.cpp-devtools,
+    twxs.cmake,
+    llvm-vs-code-extensions.vscode-clangd,
+    jbenden.c-cpp-flylint,
+    ms-vscode.makefile-tools,
+    vadimcn.vscode-lldb,
+    cschlosser.doxdocgen,
+    streetsidesoftware.code-spell-checker,
+    danielpinto8zz6.c-cpp-project-generator
+
+components:
+  - name: tools
+    container:
+      image: ghcr.io/labkeepers/devcontainers-vscode-cpp:latest
+      memoryLimit: 4Gi
+      memoryRequest: 512Mi
+      cpuLimit: "2"
+      cpuRequest: "500m"
+      mountSources: true
+      env:
+        - name: LANG
+          value: en_US.UTF-8
