@@ -13,14 +13,17 @@ metadata:
 attributes:
   controller.devfile.io/storage-type: per-user
   che.eclipse.org/extra-extensions: >-
-    ms-vscode.cpptools,
-    ms-vscode.cmake-tools,
+    ms-vscode.cpptools-extension-pack,
+    ms-vscode.cpptools-themes,
+    ms-vscode.cpp-devtools,
     twxs.cmake,
     llvm-vs-code-extensions.vscode-clangd,
+    jbenden.c-cpp-flylint,
     ms-vscode.makefile-tools,
     vadimcn.vscode-lldb,
     cschlosser.doxdocgen,
-    streetsidesoftware.code-spell-checker
+    streetsidesoftware.code-spell-checker,
+    danielpinto8zz6.c-cpp-project-generator
 
 components:
   - name: tools
@@ -34,40 +37,3 @@ components:
       env:
         - name: LANG
           value: en_US.UTF-8
-
-commands:
-  - id: build-cmake
-    exec:
-      label: "CMake Build"
-      component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: |
-        mkdir -p build && cd build && cmake .. -GNinja && ninja
-      group:
-        kind: build
-        isDefault: true
-
-  - id: build-make
-    exec:
-      label: "Make Build"
-      component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: make -j$(nproc)
-      group:
-        kind: build
-
-  - id: run-tests
-    exec:
-      label: "Run Tests"
-      component: tools
-      workingDir: ${PROJECT_SOURCE}/build
-      commandLine: ctest --output-on-failure
-      group:
-        kind: test
-
-  - id: clean
-    exec:
-      label: "Clean Build"
-      component: tools
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: rm -rf build
