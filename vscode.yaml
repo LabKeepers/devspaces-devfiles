@@ -1,0 +1,19 @@
+schemaVersion: 2.2.0
+metadata:
+  name: cpp-vscode
+  displayName: C++ VSCode
+  description: C++ development with VSCode
+attributes:
+  controller.devfile.io/storage-type: per-user
+  che.eclipse.org/extra-extensions: >-
+    ms-vscode.cpptools-extension-pack,
+    danielpinto8zz6.c-cpp-project-generator
+components:
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:latest
+      memoryLimit: 4Gi
+      memoryRequest: 512Mi
+      cpuLimit: "2"
+      cpuRequest: "500m"
+      mountSources: true
