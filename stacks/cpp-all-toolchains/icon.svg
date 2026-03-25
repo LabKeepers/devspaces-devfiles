@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="16" fill="#00599C"/>
-  <text x="64" y="52" font-family="monospace" font-size="36" font-weight="bold"
-        fill="white" text-anchor="middle" dominant-baseline="central">C++</text>
-  <text x="64" y="90" font-family="monospace" font-size="13"
-        fill="#A8D4F5" text-anchor="middle" dominant-baseline="central">GCC14 · LLVM</text>
-</svg>
