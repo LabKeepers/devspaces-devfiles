@@ -30,6 +30,7 @@ components:
   - name: gcc14
     container:
       image: ghcr.io/labkeepers/devspaces-images/base-gcc14:latest
+      imagePullPolicy: Always
       memoryLimit: 8Gi
       cpuLimit: 4000m
       mountSources: true
