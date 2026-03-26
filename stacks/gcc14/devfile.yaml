@@ -12,6 +12,7 @@ metadata:
   projectType: cpp
   language: cpp
   version: 1.0.0
+projects: {}
 attributes:
   controller.devfile.io/storage-type: per-user
   che.eclipse.org/extra-extensions: >-
