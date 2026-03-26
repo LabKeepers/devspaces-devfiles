@@ -3,7 +3,7 @@ metadata:
   name: cpp-all-toolchains
   displayName: C++ All Toolchains
   description: GCC 14, Clang, CMake, GDB
-  icon: icon.png
+  icon: https://raw.githubusercontent.com/LabKeepers/devspaces-devfiles/development/icons/cpp.jpg
   tags:
     - C++
     - GCC14
@@ -30,7 +30,6 @@ components:
   - name: gcc14
     container:
       image: ghcr.io/labkeepers/devspaces-images/base-gcc14:latest
-      imagePullPolicy: Always
       memoryLimit: 8Gi
       cpuLimit: 4000m
       mountSources: true
