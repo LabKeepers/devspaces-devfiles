@@ -13,15 +13,13 @@ metadata:
   language: cpp
   version: 1.0.0
 projects: 
-  - name: cpp
-    clonePath: andrzej-projects-cpp
+  - name: cpp-andrzej
     git:
       remotes:
         origin: https://github.com/LabKeepers/andrzej-projects-cpp
       checkoutFrom: 
         revision: development
-  - name: cpp
-    clonePath: stan-projects-cpp
+  - name: cpp-stan
     git:
       remotes:
         origin: https://github.com/LabKeepers/stan-projects-cpp
