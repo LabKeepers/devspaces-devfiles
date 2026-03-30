@@ -1,6 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
-  name: cpp-all-toolchains
+  name: gcc14
   displayName: C++ All Toolchains
   description: GCC 14, Clang, CMake, GDB
   icon: https://raw.githubusercontent.com/LabKeepers/devspaces-devfiles/development/icons/cpp.jpg
@@ -27,26 +27,29 @@ projects:
         revision: development
 attributes:
   controller.devfile.io/storage-type: per-user
-  .vscode/extensions.json: |
-    {
-      "recommendations": {
-        "ms-vscode.cpptools-extension-pack",
-        "ms-vscode.cpptools-themes",
-        "ms-vscode.cpp-devtools",
-        "twxs.cmake",
-        "llvm-vs-code-extensions.vscode-clangd",
-        "jbenden.c-cpp-flylint",
-        "ms-vscode.makefile-tools",
-        "vadimcn.vscode-lldb",
-        "cschlosser.doxdocgen",
-        "streetsidesoftware.code-spell-checker",
-        "danielpinto8zz6.c-cpp-project-generator"
-      }
-    }
 components:
+  - name: che-code
+    plugin:
+      uri: https://eclipse-che.github.io/che-plugin-registry/main/v3/plugins/che-incubator/che-code/latest/devfile.yaml
+    attributes:
+      che-code.eclipse.org/extensions:
+        - ms-vscode.cpptools-extension-pack
+        - ms-vscode.cpptools-themes
+        - ms-vscode.cpp-devtools
+        - twxs.cmake
+        - llvm-vs-code-extensions.vscode-clangd
+        - jbenden.c-cpp-flylint
+        - ms-vscode.makefile-tools
+        - vadimcn.vscode-lldb
+        - cschlosser.doxdocgen
+        - streetsidesoftware.code-spell-checker
+        - danielpinto8zz6.c-cpp-project-generator  
   - name: gcc14
     container:
       image: ghcr.io/labkeepers/devspaces-images/base-gcc14:latest
       memoryLimit: 8Gi
       cpuLimit: 4000m
       mountSources: true
+      env:
+        - name: VSCODE_EXTENSIONS
+          value: "ms-python.python redhat.java"
