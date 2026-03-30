@@ -14,10 +14,17 @@ metadata:
   version: 1.0.0
 projects: 
   - name: cpp
-    clonePath: .
+    clonePath: andrzej-projects-cpp
     git:
       remotes:
         origin: https://github.com/LabKeepers/andrzej-projects-cpp
+      checkoutFrom: 
+        revision: development
+  - name: cpp
+    clonePath: stan-projects-cpp
+    git:
+      remotes:
+        origin: https://github.com/LabKeepers/stan-projects-cpp
       checkoutFrom: 
         revision: development
 attributes:
