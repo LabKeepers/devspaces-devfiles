@@ -18,8 +18,8 @@ projects:
     git:
       remotes:
         origin: https://github.com/LabKeepers/andrzej-projects-cpp
-      checkoutFrom:
-        development
+      checkoutFrom: 
+        revision: development
 attributes:
   controller.devfile.io/storage-type: per-user
   .vscode/extensions.json: |
