@@ -47,6 +47,3 @@ components:
       memoryLimit: 8Gi
       cpuLimit: 4000m
       mountSources: true
-  - name: che-code
-    plugin:
-      id: che-incubator/che-code/latest
