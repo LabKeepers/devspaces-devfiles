@@ -45,5 +45,5 @@ components:
     container:
       image: ghcr.io/labkeepers/devspaces-images/base-gcc14:latest
       memoryLimit: 8Gi
-      cpuLimit: 4000m
+      cpuLimit: 2000m
       mountSources: true
