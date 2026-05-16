@@ -52,6 +52,6 @@ commands:
         && code --install-extension streetsidesoftware.code-spell-checker \
         && code --install-extension danielpinto8zz6.c-cpp-project-generator
 
-events:
-  postStart:
-    - install-extensions
+        #events:
+        #  postStart:
+        #    - install-extensions
