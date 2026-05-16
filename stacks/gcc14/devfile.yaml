@@ -27,6 +27,19 @@ projects:
         revision: development
 attributes:
   controller.devfile.io/storage-type: per-user
+  che-code.eclipse.org/extensions:
+    - ms-vscode.cpptools-extension-pack
+    - ms-vscode.cpptools-themes
+    - ms-vscode.cpp-devtools
+    - twxs.cmake
+    - llvm-vs-code-extensions.vscode-clangd
+    - jbenden.c-cpp-flylint
+    - ms-vscode.makefile-tools
+    - vadimcn.vscode-lldb
+    - cschlosser.doxdocgen
+    - streetsidesoftware.code-spell-checker
+    - danielpinto8zz6.c-cpp-project-generator
+    
 components:
   - name: gcc14
     container:
@@ -35,23 +48,3 @@ components:
       cpuLimit: 4000m
       mountSources: true
 
-commands:
-  - id: install-extensions
-    exec:
-      component: gcc14
-      commandLine: |
-        code --install-extension ms-vscode.cpptools-extension-pack \
-        && code --install-extension ms-vscode.cpptools-themes \
-        && code --install-extension ms-vscode.cpp-devtools \
-        && code --install-extension twxs.cmake \
-        && code --install-extension llvm-vs-code-extensions.vscode-clangd \
-        && code --install-extension jbenden.c-cpp-flylint \
-        && code --install-extension ms-vscode.makefile-tools \
-        && code --install-extension vadimcn.vscode-lldb \
-        && code --install-extension cschlosser.doxdocgen \
-        && code --install-extension streetsidesoftware.code-spell-checker \
-        && code --install-extension danielpinto8zz6.c-cpp-project-generator
-
-        #events:
-        #  postStart:
-        #    - install-extensions
