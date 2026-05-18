@@ -1,0 +1,65 @@
+schemaVersion: 2.2.0
+
+metadata:
+  name: gcc14
+  displayName: C++ All Toolchains
+  description: GCC 14, Clang, CMake, GDB
+  icon: https://raw.githubusercontent.com/LabKeepers/devspaces-devfiles/development/icons/cpp.jpg
+  tags:
+    - C++
+    - GCC14
+    - CMake
+    - Clang
+  projectType: cpp
+  language: cpp
+  version: 1.0.0
+
+projects:
+  - name: cpp-andrzej
+    git:
+      remotes:
+        origin: https://github.com/LabKeepers/andrzej-projects-cpp
+      checkoutFrom:
+        revision: development
+
+  - name: cpp-stan
+    git:
+      remotes:
+        origin: https://github.com/LabKeepers/stan-projects-cpp
+      checkoutFrom:
+        revision: development
+
+attributes:
+  controller.devfile.io/storage-type: per-user
+  controller.devfile.io/route-termination: reencrypt
+
+  # 🔴 KLUCZOWE FIX: binding edytora
+  controller.devfile.io/editor-container: gcc14
+
+  che-code.eclipse.org/extensions:
+    - ms-vscode.cpptools-extension-pack
+    - ms-vscode.cpptools-themes
+    - ms-vscode.cpp-devtools
+    - twxs.cmake
+    - llvm-vs-code-extensions.vscode-clangd
+    - jbenden.c-cpp-flylint
+    - ms-vscode.makefile-tools
+    - vadimcn.vscode-lldb
+    - cschlosser.doxdocgen
+    - streetsidesoftware.code-spell-checker
+    - danielpinto8zz6.c-cpp-project-generator
+
+components:
+  - name: gcc14
+    container:
+      image: ghcr.io/labkeepers/devspaces-images/base-gcc14:latest
+      memoryLimit: 8Gi
+      cpuLimit: 2000m
+      mountSources: true
+
+      # 🔴 KLUCZOWE FIX: IDE endpoint (VS Code server)
+      endpoints:
+        - name: vscode
+          targetPort: 3100
+          exposure: internal
+          protocol: https
